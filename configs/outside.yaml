@@ -1,0 +1,62 @@
+# Experiment: circular geometry, target OUTSIDE the receiver circle
+# Receivers are uniformly placed on a circle of radius 500 m.
+# Target is at [700, 400] — outside the circle (r ≈ 806 m > 500 m).
+
+experiment_name: outside_geometry
+
+geometry:
+  type: circular
+  tx: [0.0, 0.0]
+  n_receivers: 4
+  radius: 500.0
+
+target:
+  type: fixed
+  position: [700.0, 400.0]
+
+noise:
+  sigma_los: 2.0
+  p_los: 0.7
+  mu_b_ratio: 2.5
+  sigma_b_db_range: [-50, 50]
+  n_sigma_levels: 21
+
+simulation:
+  n_runs: 1000
+  n_jobs: -1
+  seed: 42
+  bounds: [-1200, 1200, -1200, 1200]
+
+algorithms:
+  - short_name: DE
+    type: scipy_de
+    params:
+      popsize: 15
+      maxiter: 1000
+      tol: 1.0e-6
+
+  - short_name: NM
+    type: scipy_minimize
+    params:
+      method: Nelder-Mead
+      options:
+        maxiter: 2000
+        xatol: 1.0e-6
+        fatol: 1.0e-8
+
+  - short_name: CWLS
+    type: cwls
+    params:
+      max_iter: 50
+      tol: 1.0e-6
+
+  # - short_name: BOA
+  #   type: optbench
+  #   class: optbench.algorithms.boa.ButterflyOptimization
+  #   params:
+  #     pop_size: 100
+  #   max_evals: 10000
+
+output:
+  results_dir: results/
+  figures_dir: figures/

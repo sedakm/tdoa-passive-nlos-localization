@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh repo view sedakm/optim-alg-testing --json name,description,defaultBranchRef)",
+      "Bash(gh api repos/sedakm/optim-alg-testing/git/trees/HEAD --jq '.tree[] | .path')",
+      "Bash(gh api repos/sedakm/optim-alg-testing/git/trees/HEAD?recursive=1 --jq '.tree[] | select\\(.type==\"\"blob\"\"\\) | .path')",
+      "Bash(gh api \"repos/sedakm/optim-alg-testing/git/trees/HEAD\" -F recursive=1 --jq '.tree[] | select\\(.type==\"\"blob\"\"\\) | .path')",
+      "Bash(gh api \"repos/sedakm/optim-alg-testing/branches\" --jq '.[].name')",
+      "Bash(gh api \"repos/sedakm/optim-alg-testing/git/trees/claude/cec2017-algorithm-benchmark-oZZm0\" -F recursive=1 --jq '.tree[] | select\\(.type==\"\"blob\"\"\\) | .path')",
+      "Bash(gh api \"repos/sedakm/optim-alg-testing/contents/\" --jq '.[].name')",
+      "Bash(gh api /repos/sedakm/optim-alg-testing/contents/src/optbench/algorithms/gwo.py --jq '.content')",
+      "WebFetch(domain:api.github.com)",
+      "Bash(gh api \"repos/sedakm/optim-alg-testing/contents/src/optbench/algorithms/base.py\" --jq '.content')",
+      "Bash(gh api \"repos/sedakm/optim-alg-testing/contents/src/optbench/algorithms/de.py\" --jq '.content')",
+      "Bash(gh api \"repos/sedakm/optim-alg-testing/contents/src/optbench/algorithms/mealpy_wrapper.py\" --jq '.content')",
+      "Bash(gh api \"repos/sedakm/optim-alg-testing/contents/src/optbench/algorithms/registry.py\" --jq '.content')",
+      "Bash(gh api \"repos/sedakm/optim-alg-testing/contents/PLAN.md\" --jq '.content')",
+      "Bash(pip install -e . -q)",
+      "Bash(python -c \":*)",
+      "Bash(python scripts/run_experiment.py --config configs/inside.yaml --n-runs 10 --n-jobs 2)",
+      "Bash(python -c \"import tdoa_loc; print\\(''Package OK:'', tdoa_loc.__version__\\)\")",
+      "Bash(python3 -c \"import tdoa_loc; print\\(''Package OK:'', tdoa_loc.__version__\\)\")",
+      "Bash(pip3 install -e . -q)",
+      "Bash(conda activate base)",
+      "Bash(conda run -n base python --version)",
+      "Bash(/opt/anaconda3/bin/pip install -e . -q)",
+      "Bash(/opt/anaconda3/bin/python scripts/run_experiment.py --config configs/inside.yaml --n-runs 30 --n-jobs 4)",
+      "Bash(gh auth status)",
+      "Bash(git --version)",
+      "Bash(git config user.name)",
+      "Bash(git config user.email)",
+      "Bash(/opt/homebrew/bin/gh auth status)",
+      "Bash(git init)",
+      "Bash(git add .)",
+      "Bash(git commit:*)"
+    ]
+  }
+}

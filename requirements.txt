@@ -1,0 +1,9 @@
+numpy>=1.24
+scipy>=1.11
+pandas>=2.0
+matplotlib>=3.7
+pyyaml>=6.0
+joblib>=1.3
+h5py>=3.9
+tqdm>=4.65
+scikit-posthocs>=0.9

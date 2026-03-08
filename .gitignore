@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Results & figures (data files — keep .gitkeep placeholders)
+results/*.h5
+results/*.json
+results/*.csv
+figures/*.png
+figures/*.pdf
+figures/*.svg
+
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
