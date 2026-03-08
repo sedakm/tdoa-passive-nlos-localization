@@ -28,6 +28,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from tdoa_loc.algorithms.cwls import CWLS
 from tdoa_loc.algorithms.scipy_wrappers import ScipyDE, ScipyMinimize
+from tdoa_loc.algorithms.poa import POA
 from tdoa_loc.algorithms.base import TDOAAlgorithm, OptbenchAdapter
 from tdoa_loc.simulation.monte_carlo import SimulationConfig, run_monte_carlo
 
@@ -55,6 +56,11 @@ def build_algorithms(cfg: dict) -> list[TDOAAlgorithm]:
 
         elif atype == "cwls":
             a = CWLS(**params)
+            a.short_name = short
+            algos.append(a)
+
+        elif atype == "poa":
+            a = POA(**params)
             a.short_name = short
             algos.append(a)
 
