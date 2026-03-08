@@ -51,6 +51,12 @@ algorithms:
       max_iter: 50
       tol: 1.0e-6
 
+  - short_name: POA
+    type: poa
+    params:
+      pop_size: 30
+      max_iter: 500
+
   # - short_name: BOA
   #   type: optbench
   #   class: optbench.algorithms.boa.ButterflyOptimization

@@ -111,7 +111,11 @@ class SimulationResults:
             path = path.with_suffix(".h5")
         path.parent.mkdir(parents=True, exist_ok=True)
 
-        self.data.to_hdf(str(path), key="data", mode="w", complevel=5)
+        # Convert StringDtype columns to object so pytables can serialise them
+        data_save = self.data.copy()
+        for col in data_save.select_dtypes(include="string").columns:
+            data_save[col] = data_save[col].astype(object)
+        data_save.to_hdf(str(path), key="data", mode="w", complevel=5)
         self.crlb.to_hdf(str(path), key="crlb", mode="a", complevel=5)
 
         # JSON sidecar with config snapshot

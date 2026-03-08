@@ -195,6 +195,9 @@ def _instantiate_algo(ac: Dict[str, Any]) -> TDOAAlgorithm:
     elif atype == "cwls":
         from tdoa_loc.algorithms.cwls import CWLS
         return CWLS(**params)
+    elif atype == "poa":
+        from tdoa_loc.algorithms.poa import POA
+        return POA(**params)
     elif atype == "optbench":
         cls_path = ac["class"]
         module_name, class_name = cls_path.rsplit(".", 1)
@@ -283,6 +286,9 @@ def _build_algo_configs(algorithms: List[TDOAAlgorithm]) -> List[Dict[str, Any]]
         if isinstance(algo, CWLS):
             configs.append({"type": "cwls", "short_name": algo.short_name,
                              "params": {"max_iter": algo.max_iter, "tol": algo.tol}})
+        elif hasattr(algo, "pop_size") and hasattr(algo, "max_iter") and type(algo).__name__ == "POA":
+            configs.append({"type": "poa", "short_name": algo.short_name,
+                             "params": {"pop_size": algo.pop_size, "max_iter": algo.max_iter}})
         elif hasattr(algo, "_algo"):  # OptbenchAdapter
             configs.append({
                 "type": "optbench",

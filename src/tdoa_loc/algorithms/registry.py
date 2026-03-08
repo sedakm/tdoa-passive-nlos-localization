@@ -54,9 +54,11 @@ registry = AlgorithmRegistry()
 # ---------------------------------------------------------------------------
 from tdoa_loc.algorithms.scipy_wrappers import ScipyMinimize, ScipyDE  # noqa: E402
 from tdoa_loc.algorithms.cwls import CWLS  # noqa: E402
+from tdoa_loc.algorithms.poa import POA  # noqa: E402
 
 registry.register("DE", ScipyDE)
 registry.register("NM", lambda **kw: ScipyMinimize(method="Nelder-Mead", **kw))
 registry.register("BFGS", lambda **kw: ScipyMinimize(method="BFGS", **kw))
 registry.register("Powell", lambda **kw: ScipyMinimize(method="Powell", **kw))
 registry.register("CWLS", CWLS)
+registry.register("POA", POA)
